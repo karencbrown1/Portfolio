@@ -1,0 +1,758 @@
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QA Portfolio - Bug Reports</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .summary {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .summary h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .stat-box {
+            background: #f9f9f9;
+            padding: 20px;
+            border-left: 4px solid #667eea;
+            border-radius: 5px;
+        }
+        
+        .stat-box h3 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+        
+        .stat-box p {
+            color: #666;
+        }
+        
+        .bug-report {
+            background: white;
+            padding: 30px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #ff6b6b;
+        }
+        
+        .bug-report.critical {
+            border-left-color: #ff6b6b;
+        }
+        
+        .bug-report.high {
+            border-left-color: #ffa94d;
+        }
+        
+        .bug-report.medium {
+            border-left-color: #ffd43b;
+        }
+        
+        .bug-report.low {
+            border-left-color: #69db7c;
+        }
+        
+        .bug-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 15px;
+        }
+        
+        .bug-header h3 {
+            color: #333;
+            flex: 1;
+        }
+        
+        .severity {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .severity.critical {
+            background-color: #ffe0e0;
+            color: #d00;
+        }
+        
+        .severity.high {
+            background-color: #ffe8cc;
+            color: #d97e0a;
+        }
+        
+        .severity.medium {
+            background-color: #fff3bf;
+            color: #9d6b00;
+        }
+        
+        .severity.low {
+            background-color: #e6ffed;
+            color: #2d7a3a;
+        }
+        
+        .bug-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .detail-section h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+        
+        .detail-section {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        
+        .detail-section p {
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+        
+        .expected-actual {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .expected, .actual {
+            background: #f9f9f9;
+            padding: 12px;
+            border-radius: 5px;
+        }
+        
+        .expected h5 {
+            color: #2d7a3a;
+            margin-bottom: 8px;
+        }
+        
+        .actual h5 {
+            color: #d00;
+            margin-bottom: 8px;
+        }
+        
+        .test-case {
+            background: white;
+            padding: 30px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #4c6ef5;
+        }
+        
+        .test-case h3 {
+            color: #4c6ef5;
+            margin-bottom: 15px;
+        }
+        
+        .test-steps {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        
+        .test-steps ol {
+            margin-left: 20px;
+            color: #555;
+        }
+        
+        .test-steps li {
+            margin-bottom: 8px;
+        }
+        
+        .section-title {
+            font-size: 2em;
+            color: #333;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            margin-top: 40px;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🧪 QA Portfolio</h1>
+        <p>Login Form - Bug Report & Test Cases</p>
+    </header>
+    
+    <container>
+        <a href="index.html" class="back-link">← Back to Portfolio</a>
+        
+        <!-- SUMMARY SECTION -->
+        <div class="summary">
+            <h2>📊 Test Execution Summary</h2>
+            <p>
+                This is a demonstration of my QA skills using a demo login application. 
+                I've identified and documented bugs found during functional testing.
+            </p>
+            
+            <div class="stats">
+                <div class="stat-box">
+                    <h3>7</h3>
+                    <p>Bugs Found</p>
+                </div>
+                <div class="stat-box">
+                    <h3>2</h3>
+                    <p>Critical</p>
+                </div>
+                <div class="stat-box">
+                    <h3>3</h3>
+                    <p>High</p>
+                </div>
+                <div class="stat-box">
+                    <h3>2</h3>
+                    <p>Medium</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- BUG REPORTS SECTION -->
+        <h2 class="section-title">🐛 Bug Reports</h2>
+        
+        <!-- BUG #1 -->
+        <div class="bug-report critical">
+            <div class="bug-header">
+                <h3>Bug #1: Password Field Shows Plain Text</h3>
+                <span class="severity critical">CRITICAL</span>
+            </div>
+            
+            <div class="bug-details">
+                <div class="detail-section">
+                    <h4>📍 Steps to Reproduce:</h4>
+                    <p>1. Navigate to login form
+2. Click on password field
+3. Type any password
+4. Observe the text displayed</p>
+                </div>
+                
+                <div class="detail-section">
+                    <h4>🎯 Expected Result:</h4>
+                    <p>Password should be masked with dots (•••••) or asterisks (*****) for security</p>
+                </div>
+            </div>
+            
+            <div class="expected-actual">
+                <div class="expected">
+                    <h5>✅ Expected:</h5>
+                    <p>Password field shows: •••••</p>
+                </div>
+                <div class="actual">
+                    <h5>❌ Actual:</h5>
+                    <p>Password field shows: password123</p>
+                </div>
+            </div>
+            
+            <div class="detail-section">
+                <h4>💡 Impact:</h4>
+                <p>Security vulnerability. Anyone looking at the screen can see the user's password. This violates basic security practices.</p>
+            </div>
+        </div>
+        
+        <!-- BUG #2 -->
+        <div class="bug-report critical">
+            <div class="bug-header">
+                <h3>Bug #2: No Email Format Validation</h3>
+                <span class="severity critical">CRITICAL</span>
+            </div>
+            
+            <div class="bug-details">
+                <div class="detail-section">
+                    <h4>📍 Steps to Reproduce:</h4>
+                    <p>1. Navigate to login form
+2. Enter "invalidemailaddress" (no @ symbol)
+3. Enter any password
+4. Click Login
+5. Form accepts invalid email</p>
+                </div>
+                
+                <div class="detail-section">
+                    <h4>🎯 Expected Result:</h4>
+                    <p>Form should reject email without @ symbol and display error: "Please enter a valid email address"</p>
+                </div>
+            </div>
+            
+            <div class="expected-actual">
+                <div class="expected">
+                    <h5>✅ Expected:</h5>
+                    <p>Error message displays: "Invalid email format"</p>
+                </div>
+                <div class="actual">
+                    <h5>❌ Actual:</h5>
+                    <p>Form accepts "test" as valid email</p>
+                </div>
+            </div>
+            
+            <div class="detail-section">
+                <h4>💡 Impact:</h4>
+                <p>Users can submit invalid emails. Backend will likely reject it, causing poor user experience.</p>
+            </div>
+        </div>
+        
+        <!-- BUG #3 -->
+        <div class="bug-report high">
+            <div class="bug-header">
+                <h3>Bug #3: No Button Disable to Prevent Double Submission</h3>
+                <span class="severity high">HIGH</span>
+            </div>
+            
+            <div class="bug-details">
+                <div class="detail-section">
+                    <h4>📍 Steps to Reproduce:</h4>
+                    <p>1. Navigate to login form
+2. Enter valid email and password
+3. Click Login button multiple times rapidly
+4. Observe button does not disable</p>
+                </div>
+                
+                <div class="detail-section">
+                    <h4>🎯 Expected Result:</h4>
+                    <p>Login button should disable immediately after first click to prevent double submission</p>
+                </div>
+            </div>
+            
+            <div class="expected-actual">
+                <div class="expected">
+                    <h5>✅ Expected:</h5>
+                    <p>Button disables and shows "Processing..." after click</p>
+                </div>
+                <div class="actual">
+                    <h5>❌ Actual:</h5>
+                    <p>Button remains enabled and clickable multiple times</p>
+                </div>
+            </div>
+            
+            <div class="detail-section">
+                <h4>💡 Impact:</h4>
+                <p>User could accidentally submit form multiple times, potentially creating duplicate accounts or transactions.</p>
+            </div>
+        </div>
+        
+        <!-- BUG #4 -->
+        <div class="bug-report high">
+            <div class="bug-header">
+                <h3>Bug #4: Form Does Not Clear After Successful Login</h3>
+                <span class="severity high">HIGH</span>
+            </div>
+            
+            <div class="bug-details">
+                <div class="detail-section">
+                    <h4>📍 Steps to Reproduce:</h4>
+                    <p>1. Navigate to login form
+2. Enter valid email and password
+3. Click Login
+4. Click Login again without clearing fields
+5. Success message appears again</p>
+                </div>
+                
+                <div class="detail-section">
+                    <h4>🎯 Expected Result:</h4>
+                    <p>After successful login, form should clear and either redirect to dashboard or show fresh form</p>
+                </div>
+            </div>
+            
+            <div class="expected-actual">
+                <div class="expected">
+                    <h5>✅ Expected:</h5>
+                    <p>Form fields clear, redirect to dashboard, or form resets</p>
+                </div>
+                <div class="actual">
+                    <h5>❌ Actual:</h5>
+                    <p>Form fields retain values, user can submit again immediately</p>
+                </div>
+            </div>
+            
+            <div class="detail-section">
+                <h4>💡 Impact:</h4>
+                <p>Confusing user experience. Not clear if login was successful or if user needs to try again.</p>
+            </div>
+        </div>
+        
+        <!-- BUG #5 -->
+        <div class="bug-report high">
+            <div class="bug-header">
+                <h3>Bug #5: Weak Password Validation (Minimum 3 Characters)</h3>
+                <span class="severity high">HIGH</span>
+            </div>
+            
+            <div class="bug-details">
+                <div class="detail-section">
+                    <h4>📍 Steps to Reproduce:</h4>
+                    <p>1. Navigate to login form
+2. Enter email: test@test.com
+3. Enter password: "abc" (3 characters)
+4. Click Login
+5. Form accepts weak password</p>
+                </div>
+                
+                <div class="detail-section">
+                    <h4>🎯 Expected Result:</h4>
+                    <p>Password minimum should be 8+ characters. Should show error: "Password must be at least 8 characters"</p>
+                </div>
+            </div>
+            
+            <div class="expected-actual">
+                <div class="expected">
+                    <h5>✅ Expected:</h5>
+                    <p>Error: "Password must contain 8+ characters"</p>
+                </div>
+                <div class="actual">
+                    <h5>❌ Actual:</h5>
+                    <p>Accepts 3-character password without warning</p>
+                </div>
+            </div>
+            
+            <div class="detail-section">
+                <h4>💡 Impact:</h4>
+                <p>Security risk. Very weak passwords are accepted, making accounts vulnerable to brute force attacks.</p>
+            </div>
+        </div>
+        
+        <!-- BUG #6 -->
+        <div class="bug-report medium">
+            <div class="bug-header">
+                <h3>Bug #6: Missing "Forgot Password" Link</h3>
+                <span class="severity medium">MEDIUM</span>
+            </div>
+            
+            <div class="bug-details">
+                <div class="detail-section">
+                    <h4>📍 Steps to Reproduce:</h4>
+                    <p>1. Navigate to login form
+2. Look for "Forgot Password?" link
+3. Link is not present on the form</p>
+                </div>
+                
+                <div class="detail-section">
+                    <h4>🎯 Expected Result:</h4>
+                    <p>"Forgot Password?" link should be displayed below password field</p>
+                </div>
+            </div>
+            
+            <div class="expected-actual">
+                <div class="expected">
+                    <h5>✅ Expected:</h5>
+                    <p>Link displays: "Forgot Password?"</p>
+                </div>
+                <div class="actual">
+                    <h5>❌ Actual:</h5>
+                    <p>Link is missing from form</p>
+                </div>
+            </div>
+            
+            <div class="detail-section">
+                <h4>💡 Impact:</h4>
+                <p>Users who forget their password have no way to reset it. Leads to account lockouts and poor UX.</p>
+            </div>
+        </div>
+        
+        <!-- BUG #7 -->
+        <div class="bug-report medium">
+            <div class="bug-header">
+                <h3>Bug #7: Error Messages Are Vague</h3>
+                <span class="severity medium">MEDIUM</span>
+            </div>
+            
+            <div class="bug-details">
+                <div class="detail-section">
+                    <h4>📍 Steps to Reproduce:</h4>
+                    <p>1. Navigate to login form
+2. Leave email blank
+3. Click Login
+4. Error message shows "Invalid email"</p>
+                </div>
+                
+                <div class="detail-section">
+                    <h4>🎯 Expected Result:</h4>
+                    <p>Error message should be more specific: "Email field is required" or "Please enter a valid email address"</p>
+                </div>
+            </div>
+            
+            <div class="expected-actual">
+                <div class="expected">
+                    <h5>✅ Expected:</h5>
+                    <p>Error: "Email field is required"</p>
+                </div>
+                <div class="actual">
+                    <h5>❌ Actual:</h5>
+                    <p>Error: "Invalid email"</p>
+                </div>
+            </div>
+            
+            <div class="detail-section">
+                <h4>💡 Impact:</h4>
+                <p>Users don't know what went wrong or how to fix it, leading to frustration and abandoned logins.</p>
+            </div>
+        </div>
+        
+        <!-- TEST CASES SECTION -->
+        <h2 class="section-title">✅ Test Cases</h2>
+        
+        <div class="test-case">
+            <h3>TC-001: Valid Email and Password Login</h3>
+            <div class="test-steps">
+                <strong>Steps:</strong>
+                <ol>
+                    <li>Navigate to login form</li>
+                    <li>Enter email: valid@email.com</li>
+                    <li>Enter password: ValidPass123</li>
+                    <li>Click Login button</li>
+                </ol>
+            </div>
+            <div class="test-steps">
+                <strong>Expected Result:</strong>
+                <ol>
+                    <li>Form submission succeeds</li>
+                    <li>Success message displays</li>
+                    <li>User is redirected to dashboard (or confirmation message)</li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="test-case">
+            <h3>TC-002: Empty Email Field</h3>
+            <div class="test-steps">
+                <strong>Steps:</strong>
+                <ol>
+                    <li>Navigate to login form</li>
+                    <li>Leave email field empty</li>
+                    <li>Enter password: ValidPass123</li>
+                    <li>Click Login button</li>
+                </ol>
+            </div>
+            <div class="test-steps">
+                <strong>Expected Result:</strong>
+                <ol>
+                    <li>Error message displays below email field</li>
+                    <li>Form does not submit</li>
+                    <li>Error message: "Email field is required"</li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="test-case">
+            <h3>TC-003: Invalid Email Format</h3>
+            <div class="test-steps">
+                <strong>Steps:</strong>
+                <ol>
+                    <li>Navigate to login form</li>
+                    <li>Enter email: notanemail</li>
+                    <li>Enter password: ValidPass123</li>
+                    <li>Click Login button</li>
+                </ol>
+            </div>
+            <div class="test-steps">
+                <strong>Expected Result:</strong>
+                <ol>
+                    <li>Error message displays below email field</li>
+                    <li>Form does not submit</li>
+                    <li>Error message: "Please enter a valid email (example@email.com)"</li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="test-case">
+            <h3>TC-004: Empty Password Field</h3>
+            <div class="test-steps">
+                <strong>Steps:</strong>
+                <ol>
+                    <li>Navigate to login form</li>
+                    <li>Enter email: valid@email.com</li>
+                    <li>Leave password field empty</li>
+                    <li>Click Login button</li>
+                </ol>
+            </div>
+            <div class="test-steps">
+                <strong>Expected Result:</strong>
+                <ol>
+                    <li>Error message displays below password field</li>
+                    <li>Form does not submit</li>
+                    <li>Error message: "Password field is required"</li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="test-case">
+            <h3>TC-005: Weak Password (Less than 8 characters)</h3>
+            <div class="test-steps">
+                <strong>Steps:</strong>
+                <ol>
+                    <li>Navigate to login form</li>
+                    <li>Enter email: valid@email.com</li>
+                    <li>Enter password: pass</li>
+                    <li>Click Login button</li>
+                </ol>
+            </div>
+            <div class="test-steps">
+                <strong>Expected Result:</strong>
+                <ol>
+                    <li>Error message displays below password field</li>
+                    <li>Form does not submit</li>
+                    <li>Error message: "Password must be at least 8 characters long"</li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="test-case">
+            <h3>TC-006: Password Field Masking</h3>
+            <div class="test-steps">
+                <strong>Steps:</strong>
+                <ol>
+                    <li>Navigate to login form</li>
+                    <li>Click on password field</li>
+                    <li>Type any password</li>
+                    <li>Observe what displays in field</li>
+                </ol>
+            </div>
+            <div class="test-steps">
+                <strong>Expected Result:</strong>
+                <ol>
+                    <li>Password characters are masked with dots (•••••) or asterisks (*****)</li>
+                    <li>Plain text password is never visible</li>
+                    <li>Security is maintained</li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="test-case">
+            <h3>TC-007: Double Submission Prevention</h3>
+            <div class="test-steps">
+                <strong>Steps:</strong>
+                <ol>
+                    <li>Navigate to login form</li>
+                    <li>Enter valid email and password</li>
+                    <li>Click Login button rapidly multiple times</li>
+                    <li>Observe button behavior</li>
+                </ol>
+            </div>
+            <div class="test-steps">
+                <strong>Expected Result:</strong>
+                <ol>
+                    <li>Button disables on first click</li>
+                    <li>Subsequent clicks have no effect</li>
+                    <li>Button shows loading state (e.g., "Processing...")</li>
+                </ol>
+            </div>
+        </div>
+        
+        <!-- SUMMARY SECTION -->
+        <div class="summary" style="margin-top: 40px;">
+            <h2>📝 QA Methodology</h2>
+            <p>
+                <strong>Testing Approach:</strong> Functional testing with focus on user input validation, error handling, and security best practices.
+            </p>
+            <p>
+                <strong>Test Types Used:</strong>
+            </p>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+                <li>✅ Positive Testing (valid inputs)</li>
+                <li>✅ Negative Testing (invalid inputs)</li>
+                <li>✅ Boundary Testing (edge cases)</li>
+                <li>✅ Security Testing (password masking)</li>
+                <li>✅ UI/UX Testing (error messages, button states)</li>
+            </ul>
+            <p style="margin-top: 15px;">
+                <strong>Recommendation:</strong> Prioritize fixing CRITICAL bugs first, then HIGH severity issues before deployment.
+            </p>
+        </div>
+        
+        <!-- LINK TO DEMO -->
+        <div class="summary">
+            <h2>🔗 Live Demo</h2>
+            <p>
+                <strong>Want to see the bugs yourself?</strong> <br>
+                <a href="login-demo.html" style="color: #667eea; font-weight: bold; text-decoration: none;">
+                    Click here to test the login form →
+                </a>
+            </p>
+        </div>
+        
+    </container>
+    
+    <footer>
+        <p>QA Portfolio | Demonstrating Bug Finding & Reporting Skills</p>
+    </footer>
+</body>
+</html>
