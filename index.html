@@ -69,6 +69,89 @@
             padding-bottom: 0.5rem;
         }
         
+        /* MY WORK SECTION - UPDATED CSS */
+        #my-work {
+            margin: 3rem auto;
+            padding: 0 1rem;
+            max-width: 1000px;
+        }
+
+        #my-work h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .project {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .project h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 1.3em;
+        }
+
+        .project .skills {
+            color: #667eea;
+            font-size: 0.9em;
+            margin: 10px 0 15px 0;
+            font-weight: 600;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .project p {
+            margin: 5px 0;
+            color: #666;
+        }
+
+        .project-links {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: auto;
+        }
+
+        .project-links .btn {
+            display: inline-block;
+            padding: 10px 16px;
+            background-color: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .project-links .btn:hover {
+            background-color: #764ba2;
+        }
+
+        /* ORIGINAL PORTFOLIO GRID - KEPT FOR REFERENCE */
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -231,29 +314,6 @@
             padding: 2rem;
             margin-top: 4rem;
         }
-
-        /* QA Portfolio Project Links - NEW CSS */
-        .project-links {
-            margin-top: 15px;
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .project-links .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #667eea;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-            font-weight: bold;
-        }
-
-        .project-links .btn:hover {
-            background-color: #764ba2;
-        }
         
         @media (max-width: 768px) {
             header h1 {
@@ -276,6 +336,10 @@
             .portfolio-grid {
                 grid-template-columns: 1fr;
             }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -288,63 +352,50 @@
     
     <!-- Navigation -->
     <nav>
-        <a href="#portfolio">Portfolio</a>
+        <a href="#my-work">My Work</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
     </nav>
     
-       <!-- Portfolio Section -->
-    <section id="portfolio">
+    <!-- MY WORK SECTION - NEW STRUCTURE -->
+    <section id="my-work">
         <h2>My Work</h2>
-        <div class="portfolio-grid">
+        <div class="projects-grid">
             
-            <!-- Project 1 - QA Portfolio -->
-            <div class="portfolio-item">
-                <h3>QA Portfolio & Bug Documentation Showcase</h3>
-                <div class="tech">HTML, CSS</div>
+            <!-- Project 1: TCMS -->
+            <div class="project">
+                <h3>Test Case Management System (TCMS)</h3>
+                <p class="skills">QA Testing • Documentation • HTML/CSS/JavaScript</p>
+                <p><strong>What it does:</strong> Complete test case documentation platform with execution tracking, analytics dashboard, and CSV export. Features 7 pre-loaded test cases.</p>
+                <p><strong>Key Features:</strong> Full CRUD Operations • Search & Filtering • Analytics Charts • CSV Export</p>
+                <div class="project-links">
+                    <a href="projects/tcms.html" class="btn">Launch TCMS</a>
+                    <a href="projects/tcms-code.html" class="btn">View Code</a>
+                </div>
+            </div>
+            
+            <!-- Project 2: QA Portfolio -->
+            <div class="project">
+                <h3>QA Portfolio & Bug Documentation</h3>
+                <p class="skills">QA Testing • Documentation • HTML/CSS</p>
                 <p><strong>What it does:</strong> Interactive QA demonstration featuring 7 documented bugs with severity levels and 7 formal test cases following industry standards.</p>
-                <p><strong>Problem solved:</strong> Provides clear evidence of QA competencies in bug identification, documentation, and professional communication.</p>
-                <p><strong>Result:</strong> Professional portfolio piece demonstrating testing knowledge, formal documentation, and QA methodology understanding.</p>
-                <p><strong>Role:</strong> QA Analyst & Documentation Lead</p>
+                <p><strong>Result:</strong> Professional portfolio piece demonstrating testing knowledge and formal documentation.</p>
                 <div class="project-links">
                     <a href="login-demo.html" class="btn">View Login Demo</a>
                     <a href="qa-portfolio.html" class="btn">View QA Documentation</a>
                 </div>
             </div>
             
-            <!-- Project 2 - Test Case Management System -->
-            <div class="portfolio-item">
-                <h3>Test Case Management System</h3>
-                <div class="tech">HTML, CSS, JavaScript, localStorage</div>
-                
-                <p><strong>What it does:</strong> Complete test case documentation platform with execution tracking, analytics dashboard, and CSV export. Features 7 pre-loaded test cases covering Login, Dashboard, Reports, Settings, and User Management modules.</p>
-                
-                <p><strong>Key Features:</strong> Full CRUD Operations • Search & Filtering • Analytics Charts • CSV Export • 7 Pre-loaded Test Cases • 5 Module Coverage</p>
-                
-                <p><strong>Problem solved:</strong> Demonstrates advanced QA tooling capabilities, test case management expertise, and full-stack JavaScript development skills in a production-ready application.</p>
-                
-                <p><strong>Result:</strong> Standalone portfolio project showcasing test automation documentation, execution management, and data analysis capabilities.</p>
-                
-                <p><strong>Role:</strong> QA Analyst & Full-Stack Developer</p>
-                
+            <!-- Project 3: QA Metrics Dashboard -->
+            <div class="project">
+                <h3>QA Metrics Dashboard</h3>
+                <p class="skills">Data Analysis • Dashboard Design • HTML/CSS/JavaScript</p>
+                <p><strong>What it does:</strong> Interactive dashboard that tracks and visualizes key quality assurance metrics including test coverage, defect density, pass/fail rates, and test execution trends.</p>
+                <p><strong>Features:</strong> Real-time data updates • Customizable filters • Exportable reports</p>
                 <div class="project-links">
-    <a href="projects/tcms.html" class="btn">Launch TCMS</a>
-    <a href="projects/tcms-code.html" class="btn">View Code</a>
-</div>
-
+                    <a href="projects/qa-metrics-dashboard.html" class="btn">View Dashboard</a>
+                </div>
             </div>
-            
-            <!-- Project 3 -->
-          <article class="portfolio-item">
-    <h3>QA Metrics Dashboard</h3>
-               <div class="tech">HTML, CSS, JavaScript</div>
-    <p>An interactive dashboard that tracks and visualizes key quality assurance metrics including test coverage, defect density, pass/fail rates, and test execution trends. Features real-time data updates, customizable filters, and exportable reports.</p>
-    
-    <div class="project-links">
-        <a href="projects/qa-metrics-dashboard.html" class="btn">View Dashboard</a>
-    
-    </div>
-</article>
             
         </div>
     </section>
@@ -352,19 +403,28 @@
     <!-- About Section -->
     <section id="about" class="about">
         <h2>About Me</h2>
-        <p>For 25 years, I've been deeply involved in the world of Quality Assurance. My journey has been one of meticulous attention to detail and a steadfast commitment to delivering robust, high-quality software. While my expertise lies in manual testing methodologies, my experience spans the entire software development lifecycle, ensuring that every release meets the highest standards of functionality, usability, and performance. My extensive experience has honed a unique set of skills crucial for effective QA.
-<p>In-depth Test Planning and Strategy: I excel at crafting comprehensive test plans that cover all aspects of an application. This involves understanding business requirements, identifying potential risks, and designing test cases that thoroughly validate every feature.
-<p>Expert Manual Test Execution: I possess a keen eye for detail and a methodical approach to executing test cases. I'm adept at uncovering bugs that automated scripts might miss, focusing on user experience and edge cases.
-<p>Defect Identification and Reporting: My ability to clearly and concisely document defects is a significant asset. I ensure that each bug report is detailed, reproducible, and provides developers with all the necessary information to resolve issues efficiently.
-<p>Cross-functional Collaboration: I've consistently worked closely with development teams, product managers, and stakeholders to foster a shared understanding of quality and to ensure alignment on release goals.
-<p>User Acceptance Testing (UAT) Coordination: I have a strong track record of facilitating and supporting UAT, ensuring that end-users can validate the software's readiness for deployment.
-<p>Exploratory Testing Mastery: Beyond scripted tests, I leverage exploratory testing to uncover unexpected issues and to gain a deep understanding of the application's behavior in real-world scenarios.
-<p>Domain Knowledge Accumulation: Over two and a half decades, I've gained valuable insights into various industries and application domains, allowing me to approach testing with a more informed and context-aware perspective.
-<p>I'm committed to creating alignment between technical and business teams. By facilitating communication between QA, developers, business analysts, project managers, and end users, I help ensure everyone understands project objectives, priorities, and constraints. This integrated approach has consistently improved delivery quality and stakeholder satisfaction.
-<p>I  lead QA teams by defining quality strategies, establishing testing standards and processes, managing resources and workload, developing team capabilities, and reporting on quality metrics to stakeholders. I create an environment where quality is everyone's responsibility.
-<p>While the landscape of testing has evolved, the fundamental principles of rigorous manual verification remain paramount. My career has been dedicated to upholding these principles, ensuring that the software I've helped validate has consistently met and exceeded expectations.
+        <p>For 25 years, I've been deeply involved in the world of Quality Assurance. My journey has been one of meticulous attention to detail and a steadfast commitment to delivering robust, high-quality software. While my expertise lies in manual testing methodologies, my experience spans the entire software development lifecycle, ensuring that every release meets the highest standards of functionality, usability, and performance. My extensive experience has honed a unique set of skills crucial for effective QA.</p>
 
-</p>
+        <p><strong>In-depth Test Planning and Strategy:</strong> I excel at crafting comprehensive test plans that cover all aspects of an application. This involves understanding business requirements, identifying potential risks, and designing test cases that thoroughly validate every feature.</p>
+
+        <p><strong>Expert Manual Test Execution:</strong> I possess a keen eye for detail and a methodical approach to executing test cases. I'm adept at uncovering bugs that automated scripts might miss, focusing on user experience and edge cases.</p>
+
+        <p><strong>Defect Identification and Reporting:</strong> My ability to clearly and concisely document defects is a significant asset. I ensure that each bug report is detailed, reproducible, and provides developers with all the necessary information to resolve issues efficiently.</p>
+
+        <p><strong>Cross-functional Collaboration:</strong> I've consistently worked closely with development teams, product managers, and stakeholders to foster a shared understanding of quality and to ensure alignment on release goals.</p>
+
+        <p><strong>User Acceptance Testing (UAT) Coordination:</strong> I have a strong track record of facilitating and supporting UAT, ensuring that end-users can validate the software's readiness for deployment.</p>
+
+        <p><strong>Exploratory Testing Mastery:</strong> Beyond scripted tests, I leverage exploratory testing to uncover unexpected issues and to gain a deep understanding of the application's behavior in real-world scenarios.</p>
+
+        <p><strong>Domain Knowledge Accumulation:</strong> Over two and a half decades, I've gained valuable insights into various industries and application domains, allowing me to approach testing with a more informed and context-aware perspective.</p>
+
+        <p>I'm committed to creating alignment between technical and business teams. By facilitating communication between QA, developers, business analysts, project managers, and end users, I help ensure everyone understands project objectives, priorities, and constraints. This integrated approach has consistently improved delivery quality and stakeholder satisfaction.</p>
+
+        <p>I lead QA teams by defining quality strategies, establishing testing standards and processes, managing resources and workload, developing team capabilities, and reporting on quality metrics to stakeholders. I create an environment where quality is everyone's responsibility.</p>
+
+        <p>While the landscape of testing has evolved, the fundamental principles of rigorous manual verification remain paramount. My career has been dedicated to upholding these principles, ensuring that the software I've helped validate has consistently met and exceeded expectations.</p>
+
         <p>In my free time, I enjoy being out in nature, spending time with family & friends, playing board games, pickleball, and trying new restaurants.</p>
         
         <h3 style="margin-top: 1.5rem; margin-bottom: 1rem; color: #333;">Skills</h3>
@@ -374,24 +434,23 @@
             <span class="skill-tag">Regression Testing</span>
             <span class="skill-tag">Functional/UI testing</span>
             <span class="skill-tag">Integration testing</span>
-           <span class="skill-tag">Database validation</span>
+            <span class="skill-tag">Database validation</span>
             <span class="skill-tag">Test data creation</span>
             <span class="skill-tag">Defect lifecycle management</span>
             <span class="skill-tag">Testing tools (Xray, Jira, DevOps)</span>
-           <span class="skill-tag">Team leadership and mentoring</span>
-           <span class="skill-tag">Project/sprint planning</span>
-          <span class="skill-tag">Resource allocation</span>
-          <span class="skill-tag">Process improvement</span>
-          <span class="skill-tag">Stakeholder communication</span>
-          <span class="skill-tag">Problem-solving</span>
-         <span class="skill-tag">Attention to detail</span>
-         <span class="skill-tag">Time management</span>
-         <span class="skill-tag">Adaptability</span>
-        <span class="skill-tag">Documentation and communication</span>
-          <span class="skill-tag">Training and knowledge transfer</span>
-          <span class="skill-tag">Agile/Scrum</span>
-         <span class="skill-tag">User acceptance testing</span>
-   
+            <span class="skill-tag">Team leadership and mentoring</span>
+            <span class="skill-tag">Project/sprint planning</span>
+            <span class="skill-tag">Resource allocation</span>
+            <span class="skill-tag">Process improvement</span>
+            <span class="skill-tag">Stakeholder communication</span>
+            <span class="skill-tag">Problem-solving</span>
+            <span class="skill-tag">Attention to detail</span>
+            <span class="skill-tag">Time management</span>
+            <span class="skill-tag">Adaptability</span>
+            <span class="skill-tag">Documentation and communication</span>
+            <span class="skill-tag">Training and knowledge transfer</span>
+            <span class="skill-tag">Agile/Scrum</span>
+            <span class="skill-tag">User acceptance testing</span>
         </div>
     </section>
     
@@ -412,7 +471,6 @@
             <a href="mailto:karencharlenebrown@gmail.com">📧 Email</a>
             <a href="https://linkedin.com/in/karen-brown-68904a16b" target="_blank">🔗 LinkedIn</a>
             <a href="https://github.com/karencbrown1" target="_blank">💻 GitHub</a>
-           
         </div>
     </section>
     
