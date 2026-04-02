@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Karen C. Brown - Portfolio</title>
+    
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("HuYmbqpFmGVxjtUvo");
+        })();
+    </script>
+    
     <style>
         * {
             margin: 0;
@@ -459,10 +468,10 @@
         <h2>Get In Touch</h2>
         <p>Have a project in mind or want to chat? I'd love to hear from you!</p>
         
-        <form>
-            <input type="text" placeholder="Name">
-            <input type="email" placeholder="Email">
-            <textarea rows="6" placeholder="Message"></textarea>
+        <form id="contact-form">
+            <input type="text" id="from_name" placeholder="Name" required>
+            <input type="email" id="from_email" placeholder="Email" required>
+            <textarea rows="6" id="message" placeholder="Message" required></textarea>
             <button type="submit">Send Message</button>
         </form>
         
@@ -478,5 +487,27 @@
     <footer>
         <p>&copy; 2024 Karen C Brown. All rights reserved.</p>
     </footer>
+
+    <!-- EmailJS Contact Form Handler -->
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const params = {
+                from_name: document.getElementById('from_name').value,
+                from_email: document.getElementById('from_email').value,
+                message: document.getElementById('message').value
+            };
+
+            emailjs.send("service_4jgrbdk", "template_x8b2hnu", params)
+                .then(function(response) {
+                    alert('✅ Message sent successfully! I\'ll get back to you soon.');
+                    document.getElementById('contact-form').reset();
+                }, function(error) {
+                    alert('❌ Failed to send message. Please try again or email me directly.');
+                    console.log('Error:', error);
+                });
+        });
+    </script>
 </body>
 </html>
