@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Case Management System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 2rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .tcms-wrapper {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 2rem;
+        }
+
+        /* Add your TCMS styles here */
+        .tcms-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .tcms-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .tcms-section h2 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: #667eea;
+            color: white;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        @media (max-width: 768px) {
+            .tcms-container {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Test Case Management System</h1>
+            <p>Manage, execute, and track test cases efficiently</p>
+        </div>
+
+        <div class="content">
+            <a href="../index.html" class="back-link">← Back to Portfolio</a>
+
+            <div class="tcms-wrapper">
+                <div class="tcms-container">
+                    <!-- Add Test Case Form -->
+                    <div class="tcms-section">
+                        <h2>Add Test Case</h2>
+                        <form id="tcForm">
+                            <input type="text" id="tcId" placeholder="Test Case ID (e.g., TC-001)" required>
+                            <input type="text" id="tcName" placeholder="Test Case Name" required>
+                            <select id="tcModule" required>
+                                <option value="">Select Module</option>
+                                <option value="Login">Login</option>
+                                <option value="Dashboard">Dashboard</option>
+                                <option value="Reports">Reports</option>
+                                <option value="Settings">Settings</option>
+                                <option value="User Management">User Management</option>
+                            </select>
+                            <textarea id="tcSteps" placeholder="Test Steps" rows="4" required></textarea>
+                            <select id="tcStatus" required>
+                                <option value="">Select Status</option>
+                                <option value="Pass">Pass</option>
+                                <option value="Fail">Fail</option>
+                                <option value="Blocked">Blocked</option>
+                                <option value="Not Executed">Not Executed</option>
+                            </select>
+                            <button type="submit">Add Test Case</button>
+                        </form>
+                    </div>
+
+                    <!-- Statistics -->
+                    <div class="tcms-section">
+                        <h2>Test Statistics</h2>
+                        <div id="statistics">
+                            <p><strong>Total Test Cases:</strong> <span id="totalTC">0</span></p>
+                            <p><strong>Passed:</strong> <span id="passedTC">0</span></p>
+                            <p><strong>Failed:</strong> <span id="failedTC">0</span></p>
+                            <p><strong>Blocked:</strong> <span id="blockedTC">0</span></p>
+                            <p><strong>Not Executed:</strong> <span id="notExecTC">0</span></p>
+                            <p><strong>Pass Rate:</strong> <span id="passRate">0%</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Test Cases Table -->
+                <div class="tcms-section" style="grid-column: 1/-1;">
+                    <h2>Test Cases</h2>
+                    <input type="text" id="searchInput" placeholder="Search test cases...">
+                    <table id="tcTable">
+                        <thead>
+                            <tr>
+                                <th>TC ID</th>
+                                <th>Name</th>
+                                <th>Module</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tcBody">
+                            <!-- Test cases will be added here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Pre-loaded test cases
+        const preloadedTestCases = [
+            { id: 'TC-001', name: 'Login with Valid Credentials', module: 'Login', steps: 'Enter username, Enter password, Click login', status: 'Pass' },
+            { id: 'TC-002', name: 'Login with Invalid Credentials', module: 'Login', steps: 'Enter invalid username, Enter invalid password, Click login', status: 'Pass' },
+            { id: 'TC-003', name: 'Dashboard Load', module: 'Dashboard', steps: 'Login, Navigate to dashboard, Verify layout', status: 'Pass' },
+            { id: 'TC-004', name: 'Generate Report', module: 'Reports', steps: 'Navigate to reports, Select date range, Generate', status: 'Pass' },
+            { id: 'TC-005', name: 'Update Settings', module: 'Settings', steps: 'Open settings, Modify preferences, Save', status: 'Pass' },
+            { id: 'TC-006', name: 'Add New User', module: 'User Management', steps: 'Navigate to users, Click add, Enter details, Save', status: 'Pass' },
+            { id: 'TC-007', name: 'Delete User', module: 'User Management', steps: 'Select user, Click delete, Confirm', status: 'Pass' }
+        ];
+
+        // Initialize
+        function initTCMS() {
+            const stored = localStorage.getItem('testCases');
+            if (!stored) {
+                localStorage.setItem('testCases', JSON.stringify(preloadedTestCases));
+            }
+            loadTestCases();
+            updateStatistics();
+        }
+
+        // Load test cases
+        function loadTestCases(searchTerm = '') {
+            const testCases = JSON.parse(localStorage.getItem('testCases') || '[]');
+            const tbody = document.getElementById('tcBody');
+            tbody.innerHTML = '';
+
+            const filtered = testCases.filter(tc => 
+                tc.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                tc.name.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+
+            filtered.forEach(tc => {
+                const row = document.createElement('tr');
+                const statusColor = {
+                    'Pass': '#28a745',
+                    'Fail': '#dc3545',
+                    'Blocked': '#ffc107',
+                    'Not Executed': '#6c757d'
+                };
+                
+                row.innerHTML = `
+                    <td>${tc.id}</td>
+                    <td>${tc.name}</td>
+                    <td>${tc.module}</td>
+                    <td><span style="background: ${statusColor[tc.status]}; color: white; padding: 0.25rem 0.75rem; border-radius: 4px;">${tc.status}</span></td>
+                    <td>
+                        <button onclick="editTestCase('${tc.id}')" style="background: #667eea; margin-right: 0.5rem;">Edit</button>
+                        <button onclick="deleteTestCase('${tc.id}')" style="background: #dc3545;">Delete</button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Add test case
+        document.getElementById('tcForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const newTC = {
+                id: document.getElementById('tcId').value,
+                name: document.getElementById('tcName').value,
+                module: document.getElementById('tcModule').value,
+                steps: document.getElementById('tcSteps').value,
+                status: document.getElementById('tcStatus').value
+            };
+
+            const testCases = JSON.parse(localStorage.getItem('testCases') || '[]');
+            testCases.push(newTC);
+            localStorage.setItem('testCases', JSON.stringify(testCases));
+
+            this.reset();
+            loadTestCases();
+            updateStatistics();
+        });
+
+        // Delete test case
+        function deleteTestCase(id) {
+            if (confirm('Delete this test case?')) {
+                let testCases = JSON.parse(localStorage.getItem('testCases') || '[]');
+                testCases = testCases.filter(tc => tc.id !== id);
+                localStorage.setItem('testCases', JSON.stringify(testCases));
+                loadTestCases();
+                updateStatistics();
+            }
+        }
+
+        // Update statistics
+        function updateStatistics() {
+            const testCases = JSON.parse(localStorage.getItem('testCases') || '[]');
+            const passed = testCases.filter(tc => tc.status === 'Pass').length;
+            const failed = testCases.filter(tc => tc.status === 'Fail').length;
+            const blocked = testCases.filter(tc => tc.status === 'Blocked').length;
+            const notExec = testCases.filter(tc => tc.status === 'Not Executed').length;
+            const passRate = testCases.length > 0 ? ((passed / testCases.length) * 100).toFixed(1) : 0;
+
+            document.getElementById('totalTC').textContent = testCases.length;
+            document.getElementById('passedTC').textContent = passed;
+            document.getElementById('failedTC').textContent = failed;
+            document.getElementById('blockedTC').textContent = blocked;
+            document.getElementById('notExecTC').textContent = notExec;
+            document.getElementById('passRate').textContent = passRate + '%';
+        }
+
+        // Search
+        document.getElementById('searchInput').addEventListener('keyup', function(e) {
+            loadTestCases(e.target.value);
+        });
+
+        // Initialize on load
+        window.addEventListener('load', initTCMS);
+    </script>
+</body>
+</html>
