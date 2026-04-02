@@ -5,13 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Karen C. Brown - Portfolio</title>
     
-    <!-- EmailJS -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script type="text/javascript">
-        (function(){
-            emailjs.init("HuYmbqpFmGVxjtUvo");
-        })();
-    </script>
+
+  
     
     <style>
         * {
@@ -516,26 +511,41 @@
         <p>&copy; 2024 Karen C Brown. All rights reserved.</p>
     </footer>
 
-    <!-- EmailJS Contact Form Handler -->
+       <!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Your head content -->
+</head>
+<body>
+    <!-- All your content (navbar, hero, my work, contact form, etc.) -->
+    
+    <!-- Contact form section -->
+    <section id="contact" class="contact">
+        <!-- Form code here -->
+    </section>
+
+    <!-- ADD THE SCRIPT HERE (before closing body tag) -->
     <script>
-        document.getElementById('contact-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const params = {
-                from_name: document.getElementById('from_name').value,
-                from_email: document.getElementById('from_email').value,
-                message: document.getElementById('message').value
-            };
-
-            emailjs.send("service_4jgrbdk", "template_x8b2hnu", params)
-                .then(function(response) {
-                    alert('✅ Message sent successfully! I\'ll get back to you soon.');
-                    document.getElementById('contact-form').reset();
-                }, function(error) {
-                    alert('❌ Failed to send message. Please try again or email me directly.');
-                    console.log('Error:', error);
-                });
-        });
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        const formMessage = document.getElementById('formMessage');
+        
+        // Show success message
+        formMessage.textContent = 'Thank you! Your message has been sent.';
+        formMessage.className = 'form-message success';
+        formMessage.style.display = 'block';
+        
+        // Clear form
+        this.reset();
+        
+        // Hide message after 5 seconds
+        setTimeout(() => {
+            formMessage.style.display = 'none';
+        }, 5000);
+    });
     </script>
+
+</body> <!-- CLOSING BODY TAG
+</html>
+
 </body>
 </html>
