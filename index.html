@@ -18,44 +18,36 @@
             color: #333;
         }
         
-        /* QA HEADER - FULL IMAGE WITH NAME OVERLAY */
+        /* QA HEADER - FULL WIDTH, FULL HEIGHT IMAGE WITH GRADIENT OVERLAY */
         .qa-header {
             width: 100%;
-            position: relative;
-            border-bottom: 4px solid #00abf0;
-        }
-
-        .qa-header-image {
-            width: 100%;
             height: 400px;
+            background-image: url('./images/qa-header.jpg');
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
-            display: block;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
         }
 
         .qa-header-title {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 150px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            width: 100%;
+            height: 36px;
+            background: linear-gradient(135deg, #667eea to #764ba2);
             display: flex;
             align-items: center;
             justify-content: center;
+            position: absolute;
+            bottom: 0;
+            left: 0;
         }
 
         .qa-header h1 {
-            font-size: 2.5rem;
+            font-size: 1.5rem;
             color: white;
             text-align: center;
             margin: 0;
             font-weight: bold;
-        }
-        
-        .qa-header p {
-            display: none;
         }
         
         nav {
@@ -310,16 +302,16 @@
         }
         
         @media (max-width: 768px) {
-            .qa-header-image {
+            .qa-header {
                 height: 250px;
             }
 
             .qa-header-title {
-                height: 120px;
+                height: 36px;
             }
 
             .qa-header h1 {
-                font-size: 1.8rem;
+                font-size: 1.2rem;
             }
             
             nav a {
@@ -347,9 +339,8 @@
     </style>
 </head>
 <body>
-    <!-- QA HEADER WITH FULL IMAGE AND NAME OVERLAY -->
-    <header class="qa-header">
-        <div class="qa-header-image" style="background-image: url('./images/qa-header.jpg');"></div>
+    <!-- QA HEADER WITH FULL-WIDTH, FULL-HEIGHT IMAGE AND GRADIENT NAME OVERLAY -->
+    <header class="qa-header" style="background-image: url('./images/qa-header.jpg');">
         <div class="qa-header-title">
             <h1>Karen C Brown</h1>
         </div>
