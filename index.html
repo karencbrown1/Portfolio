@@ -18,38 +18,30 @@
             color: #333;
         }
         
-        /* NEW QA HEADER WITH IMAGE */
+        /* NEW QA HEADER WITH FULL IMAGE */
         .qa-header {
             width: 100%;
-            height: 400px;
             display: flex;
             flex-direction: column;
+            align-items: center;
             border-bottom: 4px solid #00abf0;
-            position: relative;
+            padding: 2rem 1rem;
         }
 
         .qa-header-image {
-            width: 100%;
+            width: 250px;
             height: 250px;
-            background-size: cover;
+            background-size: contain;
             background-position: center;
-        }
-
-        .qa-header-title {
-            width: 100%;
-            height: 150px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background-repeat: no-repeat;
+            margin-bottom: 1.5rem;
         }
 
         .qa-header h1 {
             font-size: 2.5rem;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-            margin: 0;
+            color: #333;
             text-align: center;
+            margin: 0;
         }
         
         .qa-header p {
@@ -308,20 +300,13 @@
         }
         
         @media (max-width: 768px) {
-            .qa-header {
-                height: 300px;
+            .qa-header h1 {
+                font-size: 1.8rem;
             }
 
             .qa-header-image {
-                height: 150px;
-            }
-
-            .qa-header-title {
-                height: 150px;
-            }
-
-            .qa-header h1 {
-                font-size: 1.8rem;
+                width: 200px;
+                height: 200px;
             }
             
             nav a {
@@ -349,12 +334,10 @@
     </style>
 </head>
 <body>
-    <!-- NEW QA HEADER WITH IMAGE -->
+    <!-- NEW QA HEADER WITH FULL IMAGE -->
     <header class="qa-header">
         <div class="qa-header-image" style="background-image: url('./images/qa-header.jpg');"></div>
-        <div class="qa-header-title">
-            <h1>Karen C Brown</h1>
-        </div>
+        <h1>Karen C Brown</h1>
     </header>
     
     <!-- Navigation -->
