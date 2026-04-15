@@ -18,30 +18,40 @@
             color: #333;
         }
         
-        /* NEW QA HEADER WITH FULL IMAGE */
+        /* QA HEADER - FULL IMAGE WITH NAME OVERLAY */
         .qa-header {
             width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            position: relative;
             border-bottom: 4px solid #00abf0;
-            padding: 2rem 1rem;
         }
 
         .qa-header-image {
-            width: 250px;
-            height: 250px;
-            background-size: contain;
+            width: 100%;
+            height: 400px;
+            background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .qa-header-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 150px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .qa-header h1 {
             font-size: 2.5rem;
-            color: #333;
+            color: white;
             text-align: center;
             margin: 0;
+            font-weight: bold;
         }
         
         .qa-header p {
@@ -300,13 +310,16 @@
         }
         
         @media (max-width: 768px) {
-            .qa-header h1 {
-                font-size: 1.8rem;
+            .qa-header-image {
+                height: 250px;
             }
 
-            .qa-header-image {
-                width: 200px;
-                height: 200px;
+            .qa-header-title {
+                height: 120px;
+            }
+
+            .qa-header h1 {
+                font-size: 1.8rem;
             }
             
             nav a {
@@ -334,10 +347,12 @@
     </style>
 </head>
 <body>
-    <!-- NEW QA HEADER WITH FULL IMAGE -->
+    <!-- QA HEADER WITH FULL IMAGE AND NAME OVERLAY -->
     <header class="qa-header">
         <div class="qa-header-image" style="background-image: url('./images/qa-header.jpg');"></div>
-        <h1>Karen C Brown</h1>
+        <div class="qa-header-title">
+            <h1>Karen C Brown</h1>
+        </div>
     </header>
     
     <!-- Navigation -->
